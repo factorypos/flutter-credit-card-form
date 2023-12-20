@@ -86,6 +86,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
       child: Column(
         children: [
           TextInputWidget(
+            autofillHints: const [AutofillHints.creditCardNumber],
             theme: theme,
             fontSize: widget.fontSize,
             controller: controllers['card'],
@@ -98,8 +99,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
             ],
             onChanged: (val) {
               Map img = CardUtils.getCardIcon(val);
-              CardType type =
-                  CardUtils.getCardTypeFrmNumber(val.replaceAll(' ', ''));
+              CardType type = CardUtils.getCardTypeFrmNumber(val.replaceAll(' ', ''));
               setState(() {
                 cardImg = img;
                 cardType = type;
@@ -146,10 +146,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                     emitResult();
                   },
                   controller: controllers['expired_date'],
-                  formatters: [
-                    CardExpirationFormatter(),
-                    LengthLimitingTextInputFormatter(5)
-                  ],
+                  formatters: [CardExpirationFormatter(), LengthLimitingTextInputFormatter(5)],
                 ),
               ),
               Expanded(
@@ -165,10 +162,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                     });
                     emitResult();
                   },
-                  formatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(widget.cvcLength)
-                  ],
+                  formatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(widget.cvcLength)],
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(8),
                     child: widget.cvcIcon ??
@@ -205,8 +199,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
       widget.controller?.addListener(() {
         CreditCardValue? initialValue = widget.controller?.value;
         if (initialValue?.cardNumber != null) {
-          TextEditingValue cardNumber =
-              FilteringTextInputFormatter.digitsOnly.formatEditUpdate(
+          TextEditingValue cardNumber = FilteringTextInputFormatter.digitsOnly.formatEditUpdate(
             const TextEditingValue(text: ''),
             TextEditingValue(text: initialValue!.cardNumber.toString()),
           );
@@ -224,12 +217,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
           controllers['card']?.value = cardNumber;
         }
         if (initialValue?.cardHolderName != null) {
-          controllers['card_holder_name']?.text =
-              initialValue!.cardHolderName.toString();
+          controllers['card_holder_name']?.text = initialValue!.cardHolderName.toString();
         }
         if (initialValue?.expiryDate != null) {
-          controllers['expired_date']?.value =
-              CardExpirationFormatter().formatEditUpdate(
+          controllers['expired_date']?.value = CardExpirationFormatter().formatEditUpdate(
             const TextEditingValue(text: ''),
             TextEditingValue(text: initialValue!.expiryDate.toString()),
           );

@@ -17,6 +17,7 @@ class TextInputWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final double fontSize;
   final TextEditingController? controller;
+  final Iterable<String>? autofillHints;
 
   const TextInputWidget({
     super.key,
@@ -33,6 +34,7 @@ class TextInputWidget extends StatelessWidget {
     this.left = 0,
     this.right = 0,
     this.top = 0,
+    this.autofillHints,
   });
 
   @override
@@ -59,6 +61,7 @@ class TextInputWidget extends StatelessWidget {
         ),
       ),
       child: TextField(
+        autofillHints: autofillHints,
         controller: controller,
         style: TextStyle(
           color: theme.textColor,
