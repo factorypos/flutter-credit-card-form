@@ -62,6 +62,7 @@ class TextInputWidget extends StatelessWidget {
       ),
       child: TextField(
         autofillHints: autofillHints,
+        enableSuggestions: true,
         controller: controller,
         style: TextStyle(
           color: theme.textColor,
