@@ -60,7 +60,7 @@ class TextInputWidget extends StatelessWidget {
           ),
         ),
       ),
-      child: TextField(
+      child: TextFormField(
         autofillHints: autofillHints,
         enableSuggestions: true,
         controller: controller,
