@@ -118,6 +118,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
           ),
           if (widget.hideCardHolder == false)
             TextInputWidget(
+              autofillHints: const [AutofillHints.creditCardName],
               theme: theme,
               fontSize: widget.fontSize,
               label: widget.cardHolderLabel ?? 'Card holder name',
@@ -135,6 +136,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
             children: [
               Expanded(
                 child: TextInputWidget(
+                  autofillHints: const [AutofillHints.creditCardExpirationDate],
                   theme: theme,
                   fontSize: widget.fontSize,
                   label: widget.expiredDateLabel ?? 'MM/YY',
@@ -151,6 +153,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
               ),
               Expanded(
                 child: TextInputWidget(
+                  autofillHints: const [AutofillHints.creditCardSecurityCode],
                   theme: theme,
                   fontSize: widget.fontSize,
                   label: widget.cvcLabel ?? 'CVC',
